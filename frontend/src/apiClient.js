@@ -1,5 +1,5 @@
 export async function fetchMailFolders(accessToken) {
-  const res = await fetch('https://<FUNCTION_APP_NAME>.azurewebsites.net/api/MailFoldersFunction', {
+  const res = await fetch('https://fa-mailbox-quota-gzecfehbb7emggf0.centralus-01.azurewebsites.net/api/MailFoldersFunction', {
     headers: { Authorization: `Bearer ${accessToken}` }
   });
   if (!res.ok) {
