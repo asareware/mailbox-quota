@@ -1,5 +1,5 @@
 {
-  "name": "mailcleaner-frontend",
+  "name": "mailbox-quota-frontend",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
@@ -7,7 +7,8 @@
     "@azure/msal-react": "^1.5.13",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "recharts": "^2.4.0"
+    "recharts": "^2.4.0",
+    "react-scripts": "^5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
