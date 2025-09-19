@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+           xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
+           xsi:type="TaskPaneApp">
+  <!-- IMPORTANT: This is the add-in GUID. Keep it fixed for the add-in lifetime. -->
+  <Id>9f3b2d6a-1c9f-4f3e-9b2e-a7c1d2e3f4b5</Id>
+
+  <Version>1.0.0.0</Version>
+  <ProviderName>Asareware</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="Mailbox Space Checker" />
+  <Description DefaultValue="Shows mailbox folder sizes and helps reclaim storage." />
+  <IconUrl DefaultValue="https://wa-mailbox-quota-windows-b7a4g4gqeqbcgjgs.centralus-01.azurewebsites.net/assets/icon-32.png" />
+  <HighResolutionIconUrl DefaultValue="https://wa-mailbox-quota-windows-b7a4g4gqeqbcgjgs.centralus-01.azurewebsites.net/assets/icon-128.png" />
+
+  <Hosts>
+    <Host Name="Mailbox" />
+  </Hosts>
+
+  <Requirements>
+    <Sets DefaultMinVersion="1.1">
+      <Set Name="Mailbox" />
+    </Sets>
+  </Requirements>
+
+  <!-- The taskpane page that is loaded when user opens the add-in -->
+  <DefaultSettings>
+    <SourceLocation DefaultValue="https://wa-mailbox-quota-windows-b7a4g4gqeqbcgjgs.centralus-01.azurewebsites.net/taskpane.html" />
+  </DefaultSettings>
+
+  <Permissions>ReadWriteItem</Permissions>
+
+  <!-- Optional: webApplicationInfo enables Office SSO and links the manifest to an AAD app registration.
+       Replace ADDIN_CLIENT_ID with the Application (client) ID of the add-in registration you create in Entra ID.
+  -->
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" Version="1.0">
+    <Requirements>
+      <bt:Sets DefaultMinVersion="1.3">
+        <bt:Set Name="Mailbox" />
+      </bt:Sets>
+    </Requirements>
+
+    <Hosts>
+      <Host Name="Mailbox">
+        <DesktopFormFactor>
+          <FunctionFile resid="residTaskPaneUrl" />
+          <ExtensionPoint xsi:type="MessageReadCommandSurface">
+            <OfficeTab id="TabDefault">
+              <Group id="quotaGroup">
+                <Label resid="groupLabel" />
+                <Control xsi:type="Button" id="openTaskPaneButton">
+                  <Label resid="buttonLabel" />
+                  <Supertip>
+                    <Title resid="buttonLabel" />
+                    <Description resid="buttonDesc" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="icon16" />
+                    <bt:Image size="32" resid="icon32" />
+                    <bt:Image size="80" resid="icon80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <SourceLocation resid="residTaskPaneUrl" />
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+
+    <Resources>
+      <bt:Images>
+        <bt:Image id="icon16" DefaultValue="https://wa-mailbox-quota-windows-b7a4g4gqeqbcgjgs.centralus-01.azurewebsites.net/assets/icon-16.png" />
+        <bt:Image id="icon32" DefaultValue="https://wa-mailbox-quota-windows-b7a4g4gqeqbcgjgs.centralus-01.azurewebsites.net/assets/icon-32.png" />
+        <bt:Image id="icon80" DefaultValue="https://wa-mailbox-quota-windows-b7a4g4g4gqeqbcgjgs.centralus-01.azurewebsites.net/assets/icon-80.png" />
+      </bt:Images>
+
+      <bt:Urls>
+        <bt:Url id="residTaskPaneUrl" DefaultValue="https://wa-mailbox-quota-windows-b7a4g4gqeqbcgjgs.centralus-01.azurewebsites.net/taskpane.html" />
+      </bt:Urls>
+
+      <bt:ShortStrings>
+        <bt:String id="groupLabel" DefaultValue="Mailbox Quota" />
+        <bt:String id="buttonLabel" DefaultValue="Quota" />
+      </bt:ShortStrings>
+
+      <bt:LongStrings>
+        <bt:String id="buttonDesc" DefaultValue="Open mailbox quota inspector" />
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+</OfficeApp>
